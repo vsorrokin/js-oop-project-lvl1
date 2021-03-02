@@ -22,6 +22,23 @@ class Validator {
     return this;
   }
 
+  number() {
+    this.rules.number = {};
+    return this;
+  }
+
+  positive() {
+    this.rules.positive = {};
+    return this;
+  }
+
+  range(from, to) {
+    this.rules.range = {
+      from, to,
+    };
+    return this;
+  }
+
   isValid(val) {
     return Object.entries(this.rules)
       .every(([rule, params]) => validators[rule](val, params));
