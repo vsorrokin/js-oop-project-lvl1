@@ -88,3 +88,22 @@ test('Shape', () => {
 
   expect(schema.isValid({ name: 'kolya', age: 100 })).toBeFalsy();
 });
+
+test('Custom', () => {
+  const v = new Validator();
+
+  const fn = (value, start) => value.startsWith(start);
+
+  v.addValidator('string', 'startWith', fn);
+
+  const schema = v.string().test('startWith', 'H');
+  expect(schema.isValid('exlet')).toBeFalsy();
+  expect(schema.isValid('Hexlet')).toBeTruthy();
+
+  const fn2 = (value, min) => value >= min;
+  v.addValidator('number', 'min', fn2);
+
+  const schema2 = v.number().test('min', 5);
+  expect(schema2.isValid(4)).toBeFalsy();
+  expect(schema2.isValid(6)).toBeTruthy();
+});

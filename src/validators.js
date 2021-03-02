@@ -39,4 +39,8 @@ export default {
     return Object.entries(shape)
       .every(([key, v]) => v.isValid(val[key]));
   },
+
+  test(val, checks) {
+    return checks.every((check) => check(val));
+  },
 };

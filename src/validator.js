@@ -14,9 +14,12 @@ const checkType = (actualType, goalType) => {
   }
 };
 
+const customValidators = {};
+
 class Validator {
   constructor(type) {
     this.rules = {};
+    this.validators = {};
     if (type) {
       this.type = type;
       this.rules[type] = {};
@@ -74,6 +77,24 @@ class Validator {
   shape(shape) {
     checkType(this.type, 'object');
     this.rules.shape = { shape };
+    return this;
+  }
+
+  addValidator(type, name, fn) {
+    customValidators[name] = { type, fn };
+  }
+
+  test(name, ...params) {
+    const { type, fn } = customValidators[name];
+    if (type !== this.type) {
+      throw new Error(`Custom validator "${name}" is not applicable to "${this.type}" type`);
+    }
+
+    this.rules.test = [
+      ...(this.rules.test || []),
+      (val) => fn(val, params),
+    ];
+
     return this;
   }
 
