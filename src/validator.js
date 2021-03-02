@@ -27,19 +27,19 @@ class Validator {
   }
 
   string() {
-    return new Validator('string');
+    return new this.constructor('string');
   }
 
   number() {
-    return new Validator('number');
+    return new this.constructor('number');
   }
 
   array() {
-    return new Validator('array');
+    return new this.constructor('array');
   }
 
   object() {
-    return new Validator('object');
+    return new this.constructor('object');
   }
 
   required() {
@@ -80,8 +80,12 @@ class Validator {
     return this;
   }
 
-  addValidator(type, name, fn) {
+  static addCustomValidator(type, name, fn) {
     customValidators[name] = { type, fn };
+  }
+
+  addValidator(type, name, fn) {
+    this.constructor.addCustomValidator(type, name, fn);
   }
 
   test(name, ...params) {
