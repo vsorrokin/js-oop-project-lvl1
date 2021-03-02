@@ -2,9 +2,7 @@
   "name": "@hexlet/code",
   "version": "0.0.1",
   "description": "Data validator",
-  "bin": {
-    "hexlet": "bin/nodejs-package.js"
-  },
+  "main": "./index.js",
   "engines": {
     "node": ">=14"
   },
@@ -27,6 +25,7 @@
   },
   "homepage": "https://github.com/vsorrokin/js-oop-project-lvl1#readme",
   "dependencies": {
+    "@hexlet/code": "file:.",
     "debug": "^4.2.0",
     "lodash": "^4.17.20"
   },
