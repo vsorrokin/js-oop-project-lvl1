@@ -32,7 +32,7 @@ export default {
   },
 
   object(val) {
-    return typeof val === 'object' && val !== null;
+    return typeof val === 'object';
   },
 
   shape(val = {}, { shape }) {
