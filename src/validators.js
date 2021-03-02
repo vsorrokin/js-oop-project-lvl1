@@ -22,4 +22,12 @@ export default {
   range(val, { from, to }) {
     return val >= from && val <= to;
   },
+
+  array(val) {
+    return Array.isArray(val);
+  },
+
+  sizeof(val, { size }) {
+    return val.length === size;
+  },
 };

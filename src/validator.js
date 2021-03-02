@@ -39,6 +39,16 @@ class Validator {
     return this;
   }
 
+  array() {
+    this.rules.array = {};
+    return this;
+  }
+
+  sizeof(size) {
+    this.rules.sizeof = { size };
+    return this;
+  }
+
   isValid(val) {
     return Object.entries(this.rules)
       .every(([rule, params]) => validators[rule](val, params));
