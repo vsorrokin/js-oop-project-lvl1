@@ -1,7 +1,7 @@
 import { test, expect } from '@jest/globals';
 import Validator from '@hexlet/code';
 
-test('Base', () => {
+test('Required, string, contains', () => {
   const v = new Validator();
 
   const schema = v.string();
@@ -17,4 +17,5 @@ test('Base', () => {
 
   expect(schema.contains('what').isValid('what does the fox say')).toBeTruthy();
   expect(schema.contains('whatthe').isValid('what does the fox say')).toBeFalsy();
+  expect(schema.contains('what').isValid('what does the fox say')).toBeTruthy();
 });
