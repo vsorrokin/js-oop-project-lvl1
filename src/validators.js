@@ -16,7 +16,7 @@ export default {
   },
 
   positive(val) {
-    return val > 0;
+    return val > 0 || val === null;
   },
 
   range(val, { from, to }) {
@@ -29,5 +29,14 @@ export default {
 
   sizeof(val, { size }) {
     return val.length === size;
+  },
+
+  object(val) {
+    return typeof val === 'object' && val !== null;
+  },
+
+  shape(val = {}, { shape }) {
+    return Object.entries(shape)
+      .every(([key, v]) => v.isValid(val[key]));
   },
 };
